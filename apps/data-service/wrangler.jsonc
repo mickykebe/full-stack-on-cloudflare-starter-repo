@@ -11,6 +11,9 @@
 	"observability": {
 		"enabled": true,
 	},
+	"ai": {
+		"binding": "AI",
+	},
 	"d1_databases": [{
     "binding": "DB",
     "database_id": "eeec824c-799b-47e2-a2f8-7bd265620b0c",
@@ -32,6 +35,18 @@
 		"producers": [{
 			"binding": "QUEUE",
 			"queue": "smart-links-data-queue-stage"
-		}]
+		}],
+	},
+	"r2_buckets": [{
+		"binding": "BUCKET",
+		"bucket_name": "smart-links-eval-stage"
+	}],
+	"workflows": [{
+		"binding": "DESTINATION_EVALUATION_WORKFLOW",
+		"name": "destination-evaluation-workflow",
+		"class_name": "DestinationEvaluationWorkflow",
+	}],
+	"browser": {
+		"binding": "VIRTUAL_BROWSER"
 	}
 }
