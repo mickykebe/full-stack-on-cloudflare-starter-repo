@@ -6,6 +6,17 @@ import { Hono } from "hono";
 
 export const App = new Hono<{ Bindings: Env }>();
 
+/* App.get("/do/:name", async (c) => {
+  const name = c.req.param("name");
+  const doId = c.env.EVALUATION_SCHEDULER.idFromName(name);
+  const stub = c.env.EVALUATION_SCHEDULER.get(doId);
+  await stub.increment();
+  const count = await stub.getCount();
+  return c.json({
+    count,
+  });
+}); */
+
 App.get("/:id", async (c) => {
   const linkId = c.req.param("id");
   const linkInfo = await getRoutingDestinations(c.env, linkId);
