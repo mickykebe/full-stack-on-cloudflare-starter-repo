@@ -7,62 +7,168 @@
 	"name": "data-service",
 	"main": "src/index.ts",
 	"compatibility_date": "2025-06-17",
-	"compatibility_flags": ["nodejs_compat"],
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
 	"observability": {
 		"enabled": true,
 	},
-	"ai": {
-		"binding": "AI",
-	},
-	"d1_databases": [{
-    "binding": "DB",
-    "database_id": "eeec824c-799b-47e2-a2f8-7bd265620b0c",
-    "remote": true
-  }],
-	"kv_namespaces": [{
-		"binding": "CACHE",
-		"id": "553cbda00f204c32a1f6faaaa1bf32db",
-		"remote": true
-	}],
-	"queues": {
-		"consumers": [{
-			"queue": "smart-links-data-queue-stage",
-			"dead_letter_queue": "smart-links-data-dead-letter-stage"
-		}, {
-			"queue": "smart-links-data-dead-letter-stage",
-			"retry_delay": 0
-		}],
-		"producers": [{
-			"binding": "QUEUE",
-			"queue": "smart-links-data-queue-stage"
-		}],
-	},
-	"r2_buckets": [{
-		"binding": "BUCKET",
-		"bucket_name": "smart-links-eval-stage"
-	}],
-	"workflows": [{
-		"binding": "DESTINATION_EVALUATION_WORKFLOW",
-		"name": "destination-evaluation-workflow",
-		"class_name": "DestinationEvaluationWorkflow",
-	}],
-	"browser": {
-		"binding": "VIRTUAL_BROWSER"
-	},
-	"durable_objects": {
-		"bindings": [{
-			"name": "EVALUATION_SCHEDULER",
-			"class_name": "EvaluationScheduler"
-		}, {
-			"class_name": "LinkClickTracker",
-			"name": "LINK_CLICK_TRACKER_OBJECT",
-		}]
-	},
-	"migrations": [{
-		"tag": "v1",
-		"new_classes": ["EvaluationScheduler"]
-	}, {
-		"tag": "v2",
-		"new_sqlite_classes": ["LinkClickTracker"]
-	}]
+	"env": {
+		"stage": {
+			"ai": {
+				"binding": "AI",
+			},
+			"d1_databases": [
+				{
+					"binding": "DB",
+					"database_id": "eeec824c-799b-47e2-a2f8-7bd265620b0c",
+					"remote": true
+				}
+			],
+			"kv_namespaces": [
+				{
+					"binding": "CACHE",
+					"id": "553cbda00f204c32a1f6faaaa1bf32db",
+					"remote": true
+				}
+			],
+			"queues": {
+				"consumers": [
+					{
+						"queue": "smart-links-data-queue-stage",
+						"dead_letter_queue": "smart-links-data-dead-letter-stage"
+					},
+					{
+						"queue": "smart-links-data-dead-letter-stage",
+						"retry_delay": 0
+					}
+				],
+				"producers": [
+					{
+						"binding": "QUEUE",
+						"queue": "smart-links-data-queue-stage"
+					}
+				],
+			},
+			"r2_buckets": [
+				{
+					"binding": "BUCKET",
+					"bucket_name": "smart-links-eval-stage"
+				}
+			],
+			"workflows": [
+				{
+					"binding": "DESTINATION_EVALUATION_WORKFLOW",
+					"name": "destination-evaluation-workflow",
+					"class_name": "DestinationEvaluationWorkflow",
+				}
+			],
+			"browser": {
+				"binding": "VIRTUAL_BROWSER"
+			},
+			"durable_objects": {
+				"bindings": [
+					{
+						"name": "EVALUATION_SCHEDULER",
+						"class_name": "EvaluationScheduler"
+					},
+					{
+						"class_name": "LinkClickTracker",
+						"name": "LINK_CLICK_TRACKER_OBJECT",
+					}
+				]
+			},
+			"migrations": [
+				{
+					"tag": "v1",
+					"new_classes": [
+						"EvaluationScheduler"
+					]
+				},
+				{
+					"tag": "v2",
+					"new_sqlite_classes": [
+						"LinkClickTracker"
+					]
+				}
+			]
+		},
+		"production": {
+			"ai": {
+				"binding": "AI",
+			},
+			"d1_databases": [
+				{
+					"binding": "DB",
+					"database_id": "d84ac4cc-bfe2-44bc-b2fd-0b569d0c6a47",
+				}
+			],
+			"kv_namespaces": [
+				{
+					"binding": "CACHE",
+					"id": "075589b6265c45cc9c587bad3acd7ef7",
+				}
+			],
+			"queues": {
+				"consumers": [
+					{
+						"queue": "smart-links-data-queue-production",
+						"dead_letter_queue": "smart-links-data-dead-letter-production"
+					},
+					{
+						"queue": "smart-links-data-dead-letter-production",
+						"retry_delay": 0
+					}
+				],
+				"producers": [
+					{
+						"binding": "QUEUE",
+						"queue": "smart-links-data-queue-production"
+					}
+				],
+			},
+			"r2_buckets": [
+				{
+					"binding": "BUCKET",
+					"bucket_name": "smart-links-eval-production"
+				}
+			],
+			"workflows": [
+				{
+					"binding": "DESTINATION_EVALUATION_WORKFLOW",
+					"name": "destination-evaluation-workflow-production",
+					"class_name": "DestinationEvaluationWorkflow",
+				}
+			],
+			"browser": {
+				"binding": "VIRTUAL_BROWSER"
+			},
+			"durable_objects": {
+				"bindings": [
+					{
+						"name": "EVALUATION_SCHEDULER",
+						"class_name": "EvaluationScheduler"
+					},
+					{
+						"class_name": "LinkClickTracker",
+						"name": "LINK_CLICK_TRACKER_OBJECT",
+					}
+				]
+			},
+			"migrations": [
+				{
+					"tag": "v1",
+					"new_classes": [
+						"EvaluationScheduler"
+					]
+				},
+				{
+					"tag": "v2",
+					"new_sqlite_classes": [
+						"LinkClickTracker"
+					]
+				}
+			]
+		}
+	}
 }
